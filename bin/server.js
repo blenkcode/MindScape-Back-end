@@ -10,7 +10,7 @@ app.set("port", port);
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3001", // Assurez-vous que l'origine est correcte
+    origin: "https://mind-scape-back-end.vercel.app", // Assurez-vous que l'origine est correcte
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
     credentials: true,

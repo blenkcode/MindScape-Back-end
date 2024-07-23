@@ -11,8 +11,7 @@ var projectsRouter = require("./routes/projects");
 var app = express();
 const cors = require("cors");
 const corsOptions = {
-  origin:
-    "https://mind-scape-front-j5vy9hl1d-valentins-projects-78ff6046.vercel.app", // Remplacez par l'origine de votre client React
+  origin: "https://mind-scape-back-end.vercel.app", // Remplacez par l'origine de votre client React
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type"],
   credentials: true,
