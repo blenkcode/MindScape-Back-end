@@ -1,8 +1,8 @@
-const app = require("../app");
+const app = require("./app");
 const debug = require("debug")("chat-app:server");
 const http = require("http");
 const socketIo = require("socket.io");
-const Chat = require("../models/messages");
+const Chat = require("./models/messages");
 
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
@@ -10,7 +10,7 @@ app.set("port", port);
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "https://mind-scape-back-end.vercel.app", // Assurez-vous que l'origine est correcte
+    origin: "https://mind-scape-front-end.vercel.app", // Origine de votre frontend
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
@@ -34,7 +34,6 @@ io.on("connection", (socket) => {
     }
   });
 
-  // Gestion des messages privés
   socket.on("private message", async (msg) => {
     try {
       const privateMessage = new Chat({
@@ -45,7 +44,6 @@ io.on("connection", (socket) => {
       });
       await privateMessage.save();
 
-      // Emission du message privé à l'expéditeur et au destinataire
       socket.to(msg.recipientId).emit("private message", privateMessage);
       socket.emit("private message", privateMessage);
     } catch (error) {
