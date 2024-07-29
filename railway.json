@@ -1,0 +1,10 @@
+{
+    "name": "my-node-app",
+    "services": [
+      {
+        "name": "web",
+        "startCommand": "npm start",
+        "buildCommand": "npm install"
+      }
+    ]
+  }
